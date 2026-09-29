@@ -1,0 +1,80 @@
+extends GraphNode
+
+var port1Connect = null
+var port2Connect = null
+var port3Connect = null
+
+var connectingTo
+
+# Dialogue Data
+var charName : String = ""
+var voice : String = ""
+var tone : String = ""
+var ID : String = "" # In my game, it's stored as a string. In other games this may be different.
+var dialogue : String = ""
+var startCommands : Array = []
+var talkCommands : Array = []
+var endCommands : Array = []
+var hasOptions : bool = false
+var continuity : Dictionary = { # handles dialogue options and what IDs they lead to. If no choices, defaults to just Option 1's ID
+	# Option 1 : ID
+	# Option 2: ID
+	# Option 3 : ID
+}
+
+
+func _process(delta):
+	if $Options/extraSettings.button_pressed:
+		$Options/option1.visible = true
+		$Options/option2.visible = true
+		$Options/option3.visible = true
+		$Options/startFunctions.visible = true
+		$Options/talkFunctions.visible = true
+		$Options/endFunctions.visible = true
+		set_slot_enabled_right(2, true)
+		$SLOT3.visible = true
+		custom_minimum_size.y = 1050
+		hasOptions = true
+	else:
+		$Options/option1.visible = false
+		$Options/option2.visible = false
+		$Options/option3.visible = false
+		$Options/startFunctions.visible = false
+		$Options/talkFunctions.visible = false
+		$Options/endFunctions.visible = false
+		set_slot_enabled_right(2, false)
+		$SLOT3.visible = false
+		custom_minimum_size.y = 424
+		hasOptions = false
+
+
+func _on_slot_updated(slot_index):
+	pass
+
+func _on_delete_request():
+	queue_free()
+
+
+func _on_resize_request(new_size):
+	size = new_size
+
+
+# Changing dialogue variables from node
+
+func _on_character_name_text_changed(new_text):
+	charName = new_text
+
+func _on_voice_text_changed(new_text):
+	voice = new_text
+	
+func _on_tone_text_changed(new_text):
+	tone = new_text
+	
+func _on_id_text_changed(new_text):
+	ID = new_text
+	
+func _on_dialogue_text_changed():
+	dialogue = $Dialogue.text
+
+func _on_start_functions_text_changed():
+	pass # Replace with function body.
