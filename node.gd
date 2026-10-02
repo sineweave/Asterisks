@@ -77,7 +77,14 @@ func _on_dialogue_text_changed():
 	dialogue = $Dialogue.text
 
 func _on_start_functions_text_changed():
-	print(functionToKey($Options/startFunctions.text))
+	var textBoxText : String = $Options/startFunctions.text
+	var commandsToParse : Array = textBoxText.split("\n",false,0)
+	startCommands = []
+	for i in commandsToParse:
+		startCommands.append(functionToKey(i))
+	
+func _on_talk_functions_text_changed():
+	return
 	
 func functionToKey(function):
 	var argumentArray : Array = []
@@ -90,20 +97,22 @@ func functionToKey(function):
 			var endIdx = function.find(")")
 			var length = endIdx - (startIdx + 1)
 			var arguments = "[" + function.substr(startIdx + 1, length) + "]"
-			argumentArray = str_to_var(arguments)
-			print(argumentArray)
-	
+			if str_to_var(arguments) is not Array:
+				push_warning("Your arguments are invalid. Check if you put a comma inside of a string without an escape character (Ex: \"Value,\")")
+			else:
+				argumentArray = str_to_var(arguments)
 	# assembling keys
 	var functionName = function.substr(0,function.find("("))
 	resultingDict["action"] = functionName
 	
 	var nameAndTypes := []
 	for i in argumentArray:
+		var argumentStringified = str(i)
 		nameAndTypes.append( {
 			"type" : type_string(typeof(i)).to_lower(),
-			"value" : i
+			"value" : argumentStringified
 		}, )
 		
-		resultingDict["args"] = nameAndTypes
-		return(resultingDict)
+	resultingDict["args"] = nameAndTypes
+	return(resultingDict)
 	
