@@ -77,4 +77,33 @@ func _on_dialogue_text_changed():
 	dialogue = $Dialogue.text
 
 func _on_start_functions_text_changed():
-	pass # Replace with function body.
+	print(functionToKey($Options/startFunctions.text))
+	
+func functionToKey(function):
+	var argumentArray : Array = []
+	var resultingDict : Dictionary = {}
+	if "(" in function:
+		if not ")" in function:
+			push_warning("Unmatched parenthesis in function call")
+		else:
+			var startIdx = function.find("(")
+			var endIdx = function.find(")")
+			var length = endIdx - (startIdx + 1)
+			var arguments = "[" + function.substr(startIdx + 1, length) + "]"
+			argumentArray = str_to_var(arguments)
+			print(argumentArray)
+	
+	# assembling keys
+	var functionName = function.substr(0,function.find("("))
+	resultingDict["action"] = functionName
+	
+	var nameAndTypes := []
+	for i in argumentArray:
+		nameAndTypes.append( {
+			"type" : type_string(typeof(i)).to_lower(),
+			"value" : i
+		}, )
+		
+		resultingDict["args"] = nameAndTypes
+		return(resultingDict)
+	
