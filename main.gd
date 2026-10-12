@@ -1,34 +1,30 @@
 extends Control
 var graphNode = preload("res://Node.tscn")
-
+var connections : Array = []
 func _on_graph_edit_connection_request(from_node, from_port, to_node, to_port):
 	var fromNode = $GraphEdit.get_node(NodePath(from_node))
 	var toNode = $GraphEdit.get_node(NodePath(to_node))
 	$GraphEdit.connect_node(from_node, from_port, to_node, to_port)
-	print(from_node)
-	print(to_node)
-	var connectionList = $GraphEdit.get_connection_list()
-	for i in connectionList:
-		print("From: " + str(i["from_node"]))
-		print("To: " + str(i["to_node"]))
+	connections.clear()
+	connections = $GraphEdit.get_connection_list()
+	fromNode.configConnections()
+	
 
 
 func _on_graph_edit_disconnection_request(from_node, from_port, to_node, to_port):
+	var fromNode = $GraphEdit.get_node(NodePath(from_node))
 	$GraphEdit.disconnect_node(from_node, from_port, to_node, to_port)
-
-
-
-func _on_graph_edit_connection_to_empty(from_node, from_port, release_position):
-	for connection in $GraphEdit.get_connection_list():
-			if connection.from_node == from_node and connection.from_port == from_port:
-				$GraphEdit.disconnect_node(from_node, from_port, connection.to_node, connection.to_port)
-				break
+	fromNode.configConnections()
 
 
 func _on_graph_edit_connection_from_empty(to_node, to_port, release_position):
 	for connection in $GraphEdit.get_connection_list():
 		if connection.to_node == to_node and connection.to_port == to_port:
-			$GraphEdit.disconnect_node(connection.from_node, connection.from_port, to_node, to_port)
+			var fromNode = $GraphEdit.get_node(NodePath(connection.from_node))
+			var fromPort = connection.from_port
+			$GraphEdit.disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+			var optionText = fromNode.get_node("Options/option" + str(fromPort + 1)).text
+			fromNode.continuity.erase(optionText)
 			break
 
 

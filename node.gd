@@ -1,11 +1,5 @@
 extends GraphNode
 
-var port1Connect = null
-var port2Connect = null
-var port3Connect = null
-
-var connectingTo
-
 # Dialogue Data
 var charName : String = ""
 var voice : String = ""
@@ -74,7 +68,7 @@ func _on_id_text_changed(new_text):
 	ID = new_text
 	
 func _on_dialogue_text_changed():
-	dialogue = $Dialogue.text
+	dialogue = $Options/Dialogue.text
 
 func _on_start_functions_text_changed():
 	var textBoxText : String = $Options/startFunctions.text
@@ -84,7 +78,18 @@ func _on_start_functions_text_changed():
 		startCommands.append(functionToKey(i))
 	
 func _on_talk_functions_text_changed():
-	return
+	var textBoxText : String = $Options/talkFunctions.text
+	var commandsToParse : Array = textBoxText.split("\n",false,0)
+	talkCommands = []
+	for i in commandsToParse:
+		talkCommands.append(functionToKey(i))
+		
+func _on_end_functions_text_changed():
+	var textBoxText : String = $Options/endFunctions.text
+	var commandsToParse : Array = textBoxText.split("\n",false,0)
+	endCommands = []
+	for i in commandsToParse:
+		endCommands.append(functionToKey(i))
 	
 func functionToKey(function):
 	var argumentArray : Array = []
@@ -116,3 +121,16 @@ func functionToKey(function):
 	resultingDict["args"] = nameAndTypes
 	return(resultingDict)
 	
+func configConnections():
+	var connections : Array = get_parent().get_connection_list()
+	continuity.clear()
+	for i in connections:
+		if get_parent().get_node(NodePath(i["from_node"])) == self:
+			match i["from_port"]:
+				0:
+					continuity[$Options/option1.text] = get_parent().get_node(NodePath(i["to_node"])).ID
+				1:
+					continuity[$Options/option2.text] = get_parent().get_node(NodePath(i["to_node"])).ID
+				2:
+					continuity[$Options/option3.text] = get_parent().get_node(NodePath(i["to_node"])).ID
+		
