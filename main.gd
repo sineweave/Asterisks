@@ -1,6 +1,10 @@
 extends Control
 var graphNode = preload("res://Node.tscn")
 var connections : Array = []
+
+# User controlled variables
+var customExtensions : Array = []
+
 func _on_graph_edit_connection_request(from_node, from_port, to_node, to_port):
 	var fromNode = $GraphEdit.get_node(NodePath(from_node))
 	var toNode = $GraphEdit.get_node(NodePath(to_node))
@@ -64,7 +68,8 @@ func _on_file_loader_file_selected(path):
 func loadJson():
 	var dictionary : Dictionary = {}
 	var file : FileAccess = FileAccess.open($FileLoader.current_path,FileAccess.READ) 
-	if file == null or $FileLoader.current_path.get_extension() != "json":
+	if file == null or $FileLoader.current_path.get_extension() != "json" and not customExtensions.has($FileLoader.current_path.get_extension()):
+		# second condition compares against anything inside of the custom file extensions array. Users can edit this array to add their custom file types to it
 		printerr("Error opening file. Did you load a .json just now? ",FileAccess.get_open_error())
 		return
 	else:
@@ -77,6 +82,9 @@ func loadJson():
 	for i in dictionary["nodes"]:
 		var node = graphNode.instantiate()
 		node.name = i["editor_name"]
+		node.end = i["end"]
+		if i["end"]:
+			node.get_node("Options/end").button_pressed = true
 		node.get_node("Options/characterName").text = i["npc"]
 		node.get_node("Options/voice").text = i["voice"]
 		node.get_node("Options/tone").text = i["tone"]
@@ -129,3 +137,18 @@ func functionReferenceToString(references):
 		
 		result += ("\n" + i["action"] + "(" + args + ")")
 	return(result)
+
+
+func _on_exit_settings_pressed():
+	$settings.hide()
+
+
+
+func _on_settings_button_pressed():
+	$settings.show()
+	
+
+
+
+func _on_extensions_text_changed():
+	customExtensions = ($settings/extensions.text).split(",")

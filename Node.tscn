@@ -88,10 +88,10 @@ offset_bottom = 131.0
 placeholder_text = "ID"
 
 [node name="Dialogue" type="TextEdit" parent="Options"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 184)
 layout_mode = 2
 offset_top = 133.0
-offset_right = 348.0
+offset_right = 350.0
 offset_bottom = 333.0
 placeholder_text = "Dialogue"
 
@@ -128,11 +128,20 @@ concludes)
 
 [node name="extraSettings" type="CheckBox" parent="Options"]
 layout_mode = 2
-offset_left = -2.0
-offset_top = 333.0
-offset_right = 346.0
-offset_bottom = 364.0
+offset_left = -10.0
+offset_top = 341.0
+offset_right = 125.0
+offset_bottom = 372.0
 text = "More Settings
+"
+
+[node name="end" type="CheckBox" parent="Options"]
+layout_mode = 2
+offset_left = 238.0
+offset_top = 341.0
+offset_right = 341.0
+offset_bottom = 372.0
+text = "End Node
 "
 
 [node name="option1" type="TextEdit" parent="Options"]
@@ -191,3 +200,4 @@ size_flags_horizontal = 8
 [connection signal="text_changed" from="Options/startFunctions" to="." method="_on_start_functions_text_changed"]
 [connection signal="text_changed" from="Options/talkFunctions" to="." method="_on_talk_functions_text_changed"]
 [connection signal="text_changed" from="Options/endFunctions" to="." method="_on_end_functions_text_changed"]
+[connection signal="toggled" from="Options/end" to="." method="_on_end_toggled"]

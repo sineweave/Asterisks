@@ -56,6 +56,48 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 
+[node name="settingsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1056.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 56.0
+text = "Settings"
+
+[node name="settings" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 416.0
+offset_top = 104.0
+offset_right = 688.0
+offset_bottom = 472.0
+
+[node name="settingsLabel" type="RichTextLabel" parent="settings"]
+layout_mode = 0
+offset_right = 272.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center]Settings"
+
+[node name="extensions" type="TextEdit" parent="settings"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 264.0
+offset_bottom = 176.0
+placeholder_text = "Custom file extensions
+(write in lowercase with no
+period, separate by ,)
+Example: dialog,asterisks,"
+
+[node name="exitSettings" type="Button" parent="settings"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 4.0
+offset_right = 265.0
+offset_bottom = 36.0
+text = "X"
+
 [connection signal="connection_from_empty" from="GraphEdit" to="." method="_on_graph_edit_connection_from_empty"]
 [connection signal="connection_request" from="GraphEdit" to="." method="_on_graph_edit_connection_request"]
 [connection signal="connection_to_empty" from="GraphEdit" to="." method="_on_graph_edit_connection_to_empty"]
@@ -66,3 +108,6 @@ access = 2
 [connection signal="canceled" from="FileLoader" to="." method="_on_file_loader_canceled"]
 [connection signal="confirmed" from="FileLoader" to="." method="_on_file_loader_confirmed"]
 [connection signal="file_selected" from="FileLoader" to="." method="_on_file_loader_file_selected"]
+[connection signal="pressed" from="settingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="text_changed" from="settings/extensions" to="." method="_on_extensions_text_changed"]
+[connection signal="pressed" from="settings/exitSettings" to="." method="_on_exit_settings_pressed"]

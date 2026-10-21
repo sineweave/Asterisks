@@ -15,6 +15,7 @@ var continuity : Dictionary = { # handles dialogue options and what IDs they lea
 	# Option 2: ID
 	# Option 3 : ID
 }
+var end : bool = false
 
 
 func _process(delta):
@@ -65,7 +66,8 @@ func _on_tone_text_changed(new_text):
 	tone = new_text
 	
 func _on_id_text_changed(new_text):
-	ID = new_text
+	if new_text.is_valid_int():
+		ID = int(new_text)
 	
 func _on_dialogue_text_changed():
 	dialogue = $Options/Dialogue.text
@@ -134,3 +136,7 @@ func configConnections():
 				2:
 					continuity[$Options/option3.text] = get_parent().get_node(NodePath(i["to_node"])).ID
 		
+
+
+func _on_end_toggled(toggled_on):
+	end = toggled_on
