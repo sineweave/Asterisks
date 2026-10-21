@@ -4,7 +4,7 @@ extends GraphNode
 var charName : String = ""
 var voice : String = ""
 var tone : String = ""
-var ID : String = "" # In my game, it's stored as a string. In other games this may be different.
+var ID : int = 0
 var dialogue : String = ""
 var startCommands : Array = []
 var talkCommands : Array = []
