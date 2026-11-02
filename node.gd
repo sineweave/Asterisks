@@ -1,3 +1,4 @@
+
 extends GraphNode
 
 # Dialogue Data
@@ -104,22 +105,20 @@ func functionToKey(function):
 			var endIdx = function.find(")")
 			var length = endIdx - (startIdx + 1)
 			var arguments = "[" + function.substr(startIdx + 1, length) + "]"
-			if str_to_var(arguments) is not Array:
+			if JSON.parse_string(arguments) is not Array:
 				push_warning("Your arguments are invalid. Check if you put a comma inside of a string without an escape character (Ex: \"Value,\")")
 			else:
-				argumentArray = str_to_var(arguments)
+				argumentArray = JSON.parse_string(arguments)
 	# assembling keys
-	var functionName = function.substr(0,function.find("("))
+	var functionName = function.strip_edges()
+	if "(" in function:
+		functionName = function.substr(0,function.find("(")).strip_edges()
 	resultingDict["action"] = functionName
-	
 	var nameAndTypes := []
 	for i in argumentArray:
-		var argumentStringified = str(i)
-		nameAndTypes.append( {
-			"type" : type_string(typeof(i)).to_lower(),
-			"value" : argumentStringified
-		}, )
-		
+		if typeof(i) == TYPE_FLOAT and is_equal_approx(i, round(i)):
+			i = int(round(i))
+		nameAndTypes.append( {"type" : type_string(typeof(i)).to_lower(),"value" : str(i)}, )
 	resultingDict["args"] = nameAndTypes
 	return(resultingDict)
 	
@@ -128,15 +127,25 @@ func configConnections():
 	continuity.clear()
 	for i in connections:
 		if get_parent().get_node(NodePath(i["from_node"])) == self:
-			match i["from_port"]:
-				0:
-					continuity[$Options/option1.text] = get_parent().get_node(NodePath(i["to_node"])).ID
-				1:
-					continuity[$Options/option2.text] = get_parent().get_node(NodePath(i["to_node"])).ID
-				2:
-					continuity[$Options/option3.text] = get_parent().get_node(NodePath(i["to_node"])).ID
+			if $Options/extraSettings.button_pressed:
+				match i["from_port"]:
+					0:
+						continuity[$Options/option1.text] = get_parent().get_node(NodePath(i["to_node"])).ID
+					1:
+						continuity[$Options/option2.text] = get_parent().get_node(NodePath(i["to_node"])).ID
+					2:
+						continuity[$Options/option3.text] = get_parent().get_node(NodePath(i["to_node"])).ID
+			else:
+				continuity["next"] = get_parent().get_node(NodePath(i["to_node"])).ID
 		
 
 
 func _on_end_toggled(toggled_on):
 	end = toggled_on
+
+func _on_start_toggled(toggled_on):
+	if toggled_on:
+		get_parent().get_parent().startNode = ID
+		for i in get_tree().get_nodes_in_group("Graph Node"):
+			if i != self:
+				i.get_node("Options/start").button_pressed = false

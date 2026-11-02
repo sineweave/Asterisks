@@ -128,20 +128,29 @@ concludes)
 
 [node name="extraSettings" type="CheckBox" parent="Options"]
 layout_mode = 2
-offset_left = -10.0
+offset_left = -18.0
 offset_top = 341.0
-offset_right = 125.0
+offset_right = 117.0
 offset_bottom = 372.0
 text = "More Settings
 "
 
 [node name="end" type="CheckBox" parent="Options"]
 layout_mode = 2
-offset_left = 238.0
+offset_left = 126.0
 offset_top = 341.0
-offset_right = 341.0
+offset_right = 229.0
 offset_bottom = 372.0
 text = "End Node
+"
+
+[node name="start" type="CheckBox" parent="Options"]
+layout_mode = 2
+offset_left = 246.0
+offset_top = 341.0
+offset_right = 358.0
+offset_bottom = 372.0
+text = "Start Node
 "
 
 [node name="option1" type="TextEdit" parent="Options"]
@@ -201,3 +210,4 @@ size_flags_horizontal = 8
 [connection signal="text_changed" from="Options/talkFunctions" to="." method="_on_talk_functions_text_changed"]
 [connection signal="text_changed" from="Options/endFunctions" to="." method="_on_end_functions_text_changed"]
 [connection signal="toggled" from="Options/end" to="." method="_on_end_toggled"]
+[connection signal="toggled" from="Options/start" to="." method="_on_start_toggled"]
