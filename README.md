@@ -20,5 +20,5 @@ To fix this, I might add custom/modular input fields and more robust dialogue op
 * Exporting and importing dialogue JSON files (or other extensions so long as they have the same syntax)
 * Support for data such as character names, voices, tones, dialogue options, and function execution (for example, animations or sounds)
 * MIT licensed (you can put this in your game or fork it for free without royalties or credit)
-* Integrates seamlessly in Godot as a popup window
+* Integrates seamlessly in Godot as an editor tab
 * Simple graph-based UI with support for branching dialogue.
