@@ -255,3 +255,8 @@ func _on_export_pressed():
 
 func _on_file_exporter_canceled():
 	$FileExporter.hide()
+
+
+func _on_graph_edit_connection_drag_started(from_node, from_port, is_output):
+	if not is_output:
+		$GraphEdit.force_connection_drag_end()

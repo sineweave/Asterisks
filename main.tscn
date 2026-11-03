@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bng6ttwepkwvi"]
+[gd_scene load_steps=7 format=3 uid="uid://bng6ttwepkwvi"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tqbq3"]
+[ext_resource type="StyleBox" uid="uid://bw8kvduexiofn" path="res://addons/asterisks/theme/button.tres" id="2_yulao"]
+[ext_resource type="StyleBox" uid="uid://dxeo3ntjnnrnn" path="res://addons/asterisks/theme/panelRounded.tres" id="3_ehrdw"]
+[ext_resource type="StyleBox" uid="uid://c4ph0vhy4lclv" path="res://addons/asterisks/theme/panelRoundedDark.tres" id="4_nsklp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vf03u"]
+bg_color = Color(0.603922, 0.172549, 0.45098, 0.486275)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lupxw"]
+bg_color = Color(0.0392319, 0.000945183, 0.0402345, 1)
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -15,8 +29,14 @@ script = ExtResource("1_tqbq3")
 layout_mode = 0
 offset_right = 1149.0
 offset_bottom = 649.0
+theme_override_colors/grid_major = Color(0.214814, 0.00977303, 0.120765, 1)
+theme_override_colors/grid_minor = Color(0.118146, 0.001414, 0.0525766, 1)
+theme_override_styles/menu_panel = SubResource("StyleBoxFlat_vf03u")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lupxw")
 scroll_offset = Vector2(-40, -40)
 zoom_min = 0.01
+zoom_max = 2.0
+show_zoom_label = true
 
 [node name="create" type="Button" parent="GraphEdit"]
 z_index = 1
@@ -25,6 +45,17 @@ offset_left = 8.0
 offset_top = 576.0
 offset_right = 144.0
 offset_bottom = 624.0
+theme_override_styles/focus = ExtResource("2_yulao")
+theme_override_styles/disabled_mirrored = ExtResource("2_yulao")
+theme_override_styles/disabled = ExtResource("2_yulao")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover_pressed = ExtResource("2_yulao")
+theme_override_styles/hover_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover = ExtResource("2_yulao")
+theme_override_styles/pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/pressed = ExtResource("2_yulao")
+theme_override_styles/normal_mirrored = ExtResource("2_yulao")
+theme_override_styles/normal = ExtResource("2_yulao")
 text = "(+) Create Node"
 
 [node name="delete" type="Button" parent="GraphEdit"]
@@ -34,6 +65,17 @@ offset_left = 160.0
 offset_top = 576.0
 offset_right = 296.0
 offset_bottom = 624.0
+theme_override_styles/focus = ExtResource("2_yulao")
+theme_override_styles/disabled_mirrored = ExtResource("2_yulao")
+theme_override_styles/disabled = ExtResource("2_yulao")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover_pressed = ExtResource("2_yulao")
+theme_override_styles/hover_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover = ExtResource("2_yulao")
+theme_override_styles/pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/pressed = ExtResource("2_yulao")
+theme_override_styles/normal_mirrored = ExtResource("2_yulao")
+theme_override_styles/normal = ExtResource("2_yulao")
 text = "(-) Delete Node"
 
 [node name="export" type="Button" parent="GraphEdit"]
@@ -43,6 +85,17 @@ offset_left = 312.0
 offset_top = 576.0
 offset_right = 448.0
 offset_bottom = 624.0
+theme_override_styles/focus = ExtResource("2_yulao")
+theme_override_styles/disabled_mirrored = ExtResource("2_yulao")
+theme_override_styles/disabled = ExtResource("2_yulao")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover_pressed = ExtResource("2_yulao")
+theme_override_styles/hover_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover = ExtResource("2_yulao")
+theme_override_styles/pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/pressed = ExtResource("2_yulao")
+theme_override_styles/normal_mirrored = ExtResource("2_yulao")
+theme_override_styles/normal = ExtResource("2_yulao")
 text = "Export JSON"
 
 [node name="load" type="Button" parent="GraphEdit"]
@@ -52,6 +105,17 @@ offset_left = 464.0
 offset_top = 576.0
 offset_right = 600.0
 offset_bottom = 624.0
+theme_override_styles/focus = ExtResource("2_yulao")
+theme_override_styles/disabled_mirrored = ExtResource("2_yulao")
+theme_override_styles/disabled = ExtResource("2_yulao")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover_pressed = ExtResource("2_yulao")
+theme_override_styles/hover_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover = ExtResource("2_yulao")
+theme_override_styles/pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/pressed = ExtResource("2_yulao")
+theme_override_styles/normal_mirrored = ExtResource("2_yulao")
+theme_override_styles/normal = ExtResource("2_yulao")
 text = "Load JSON"
 
 [node name="FileLoader" type="FileDialog" parent="."]
@@ -73,6 +137,17 @@ offset_left = 1056.0
 offset_top = 8.0
 offset_right = 1144.0
 offset_bottom = 56.0
+theme_override_styles/focus = ExtResource("2_yulao")
+theme_override_styles/disabled_mirrored = ExtResource("2_yulao")
+theme_override_styles/disabled = ExtResource("2_yulao")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover_pressed = ExtResource("2_yulao")
+theme_override_styles/hover_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover = ExtResource("2_yulao")
+theme_override_styles/pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/pressed = ExtResource("2_yulao")
+theme_override_styles/normal_mirrored = ExtResource("2_yulao")
+theme_override_styles/normal = ExtResource("2_yulao")
 text = "Settings"
 
 [node name="settings" type="Panel" parent="."]
@@ -82,6 +157,7 @@ offset_left = 416.0
 offset_top = 104.0
 offset_right = 688.0
 offset_bottom = 472.0
+theme_override_styles/panel = ExtResource("3_ehrdw")
 
 [node name="settingsLabel" type="RichTextLabel" parent="settings"]
 layout_mode = 0
@@ -96,6 +172,9 @@ offset_left = 8.0
 offset_top = 40.0
 offset_right = 264.0
 offset_bottom = 168.0
+theme_override_styles/normal = ExtResource("4_nsklp")
+theme_override_styles/focus = ExtResource("4_nsklp")
+theme_override_styles/read_only = ExtResource("4_nsklp")
 placeholder_text = "Custom file extensions to load
 (write in lowercase with no
 period, separate by ,)
@@ -108,6 +187,9 @@ offset_left = 8.0
 offset_top = 184.0
 offset_right = 264.0
 offset_bottom = 312.0
+theme_override_styles/normal = ExtResource("4_nsklp")
+theme_override_styles/focus = ExtResource("4_nsklp")
+theme_override_styles/read_only = ExtResource("4_nsklp")
 placeholder_text = "Custom file extension to write
 to (one singular string, cannot
 contain wildcard characters)
@@ -119,8 +201,20 @@ offset_left = 241.0
 offset_top = 4.0
 offset_right = 265.0
 offset_bottom = 36.0
+theme_override_styles/focus = ExtResource("2_yulao")
+theme_override_styles/disabled_mirrored = ExtResource("2_yulao")
+theme_override_styles/disabled = ExtResource("2_yulao")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover_pressed = ExtResource("2_yulao")
+theme_override_styles/hover_mirrored = ExtResource("2_yulao")
+theme_override_styles/hover = ExtResource("2_yulao")
+theme_override_styles/pressed_mirrored = ExtResource("2_yulao")
+theme_override_styles/pressed = ExtResource("2_yulao")
+theme_override_styles/normal_mirrored = ExtResource("2_yulao")
+theme_override_styles/normal = ExtResource("2_yulao")
 text = "X"
 
+[connection signal="connection_drag_started" from="GraphEdit" to="." method="_on_graph_edit_connection_drag_started"]
 [connection signal="connection_from_empty" from="GraphEdit" to="." method="_on_graph_edit_connection_from_empty"]
 [connection signal="connection_request" from="GraphEdit" to="." method="_on_graph_edit_connection_request"]
 [connection signal="connection_to_empty" from="GraphEdit" to="." method="_on_graph_edit_connection_to_empty"]
