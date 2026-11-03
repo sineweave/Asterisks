@@ -1,6 +1,6 @@
-
+@tool
 extends Control
-var graphNode = preload("res://Node.tscn")
+var graphNode = preload("res://addons/asterisks/Node.tscn")
 var connections : Array = []
 
 # User controlled variables

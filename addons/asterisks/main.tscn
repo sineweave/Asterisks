@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bng6ttwepkwvi"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_tqbq3"]
+[ext_resource type="Script" path="res://addons/asterisks/main.gd" id="1_tqbq3"]
 [ext_resource type="StyleBox" uid="uid://bw8kvduexiofn" path="res://addons/asterisks/theme/button.tres" id="2_yulao"]
 [ext_resource type="StyleBox" uid="uid://dxeo3ntjnnrnn" path="res://addons/asterisks/theme/panelRounded.tres" id="3_ehrdw"]
 [ext_resource type="StyleBox" uid="uid://c4ph0vhy4lclv" path="res://addons/asterisks/theme/panelRoundedDark.tres" id="4_nsklp"]
@@ -36,7 +36,6 @@ theme_override_colors/grid_major = Color(0.214814, 0.00977303, 0.120765, 1)
 theme_override_colors/grid_minor = Color(0.118146, 0.001414, 0.0525766, 1)
 theme_override_styles/menu_panel = SubResource("StyleBoxFlat_vf03u")
 theme_override_styles/panel = SubResource("StyleBoxFlat_lupxw")
-scroll_offset = Vector2(-1149, -648)
 zoom_min = 0.01
 zoom_max = 2.0
 show_zoom_label = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cklk07sdfjlf8"]
 
 [ext_resource type="StyleBox" uid="uid://dowj72cidutac" path="res://addons/asterisks/theme/panelUnselected.tres" id="1_b71dd"]
-[ext_resource type="Script" path="res://node.gd" id="1_gemap"]
+[ext_resource type="Script" path="res://addons/asterisks/node.gd" id="1_gemap"]
 [ext_resource type="StyleBox" uid="uid://brcn01a068rfc" path="res://addons/asterisks/theme/panelSelected.tres" id="2_5aycp"]
 [ext_resource type="StyleBox" uid="uid://ihvw25ylju1q" path="res://addons/asterisks/theme/titleUnselected.tres" id="3_xts74"]
 [ext_resource type="StyleBox" uid="uid://cdtlhfd6js0pf" path="res://addons/asterisks/theme/titleSelected.tres" id="4_86bji"]

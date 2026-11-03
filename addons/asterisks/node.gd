@@ -1,4 +1,4 @@
-
+@tool
 extends GraphNode
 
 # Dialogue Data
