@@ -116,7 +116,7 @@ func loadJson():
 			node.get_node("Options/startFunctions").text = functionReferenceToString(node.startCommands)
 			node.get_node("Options/talkFunctions").text = functionReferenceToString(node.talkCommands)
 			node.get_node("Options/endFunctions").text = functionReferenceToString(node.endCommands)
-		if i.has("options"):
+		if i.has("options") and i["options"].size() > 0:
 			node.get_node("Options/extraSettings").button_pressed = true
 			node.hasOptions = true
 			for optionIndex in range(min(i["options"].size(), 3)):
