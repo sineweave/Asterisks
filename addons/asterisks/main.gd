@@ -95,8 +95,8 @@ func loadJson():
 		var node = graphNode.instantiate()
 		node.name = i["editor_name"]
 		$GraphEdit.add_child(node)
-		node.end = i["end"]
 		if i["end"]:
+			node.end = i["end"]
 			node.get_node("Options/end").button_pressed = true
 		node.get_node("Options/characterName").text = i["npc"]
 		node.get_node("Options/voice").text = i["voice"]
