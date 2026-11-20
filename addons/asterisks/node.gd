@@ -128,7 +128,7 @@ func configConnections():
 	continuity.clear()
 	for i in connections:
 		if get_parent().get_node(NodePath(i["from_node"])) == self:
-			if $Options/extraSettings.button_pressed:
+			if hasOptions:
 				match i["from_port"]:
 					0:
 						continuity[$Options/option1.text] = get_parent().get_node(NodePath(i["to_node"])).ID

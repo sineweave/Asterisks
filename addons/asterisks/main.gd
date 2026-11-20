@@ -191,7 +191,7 @@ func exportJson():
 			i.tone = i.get_node("Options/tone").text
 			i.dialogue = i.get_node("Options/Dialogue").text
 			i.end = i.get_node("Options/end").button_pressed
-			i.hasOptions = i.get_node("Options/extraSettings").button_pressed
+			i.hasOptions = (i.get_node("Options/option1").text != "" or i.get_node("Options/option2").text != "" or i.get_node("Options/option3").text != "")
 			i._on_start_functions_text_changed()
 			i._on_talk_functions_text_changed()
 			i._on_end_functions_text_changed()

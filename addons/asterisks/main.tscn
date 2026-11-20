@@ -36,6 +36,7 @@ theme_override_colors/grid_major = Color(0.214814, 0.00977303, 0.120765, 1)
 theme_override_colors/grid_minor = Color(0.118146, 0.001414, 0.0525766, 1)
 theme_override_styles/menu_panel = SubResource("StyleBoxFlat_vf03u")
 theme_override_styles/panel = SubResource("StyleBoxFlat_lupxw")
+right_disconnects = true
 zoom_min = 0.01
 zoom_max = 2.0
 show_zoom_label = true
