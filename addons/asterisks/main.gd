@@ -7,6 +7,9 @@ var connections : Array = []
 var customExtensions : Array = []
 var startNode : int = 0
 
+func _ready():
+	$GraphEdit.right_disconnects = true
+
 func _on_graph_edit_connection_request(from_node, from_port, to_node, to_port):
 	var fromNode = $GraphEdit.get_node(NodePath(from_node))
 	var toNode = $GraphEdit.get_node(NodePath(to_node))
@@ -256,7 +259,11 @@ func _on_export_pressed():
 func _on_file_exporter_canceled():
 	$FileExporter.hide()
 
-
 func _on_graph_edit_connection_drag_started(from_node, from_port, is_output):
-	if not is_output:
-		$GraphEdit.force_connection_drag_end()
+	if is_output:
+		return
+
+	for connection in $GraphEdit.get_connection_list():
+		if connection["to_node"] == from_node and connection["to_port"] == from_port:
+			return
+	$GraphEdit.force_connection_drag_end()

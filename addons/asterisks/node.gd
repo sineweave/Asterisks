@@ -30,7 +30,8 @@ func _process(delta):
 		set_slot_enabled_right(2, true)
 		$SLOT3.visible = true
 		custom_minimum_size.y = 1050
-		hasOptions = true
+		if $Options/option1.text != "" or  $Options/option2.text != "" or  $Options/option3.text != "":
+			hasOptions = true
 	else:
 		$Options/option1.visible = false
 		$Options/option2.visible = false
